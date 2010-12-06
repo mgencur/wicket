@@ -21,7 +21,8 @@ public class Generator implements Serializable
    
    @Produces @Random int next()
    {
-      return getRandom().nextInt(maxNumber); 
+      //a number between 1 and 100
+      return getRandom().nextInt(maxNumber - 1) + 1; 
    }
    
    @Produces @MaxNumber int getMaxNumber()
