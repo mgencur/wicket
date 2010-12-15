@@ -10,6 +10,7 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
@@ -56,9 +57,9 @@ public class HomePage extends WebPage
       });
       form.add(inputGuess);
       
-      final Component guessButton = new AjaxButton("GuessButton")
+      final Component guessButton = new Button("GuessButton")
       {
-         protected void onSubmit(AjaxRequestTarget target, Form form)
+         public void onSubmit()
          {
             if (game.check())
             {
@@ -83,21 +84,21 @@ public class HomePage extends WebPage
             {
                info("Lower");
             }
-            target.addComponent(form);
+            //target.addComponent(form);
          }   
       };
       form.add(guessButton);
       
-      form.add(new AjaxButton("RestartButton")
+      form.add(new Button("RestartButton")
       {
-         protected void onSubmit(AjaxRequestTarget target, Form form)
+         public void onSubmit()
          {
             game.reset();
             guessButton.setVisible(true);
             prompt.setVisible(true);
             guessLabel.setVisible(true);
             inputGuess.setVisible(true);
-            target.addComponent(form);
+            //target.addComponent(form);
          }
       });
    }
